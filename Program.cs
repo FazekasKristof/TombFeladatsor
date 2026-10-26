@@ -3,7 +3,7 @@
     internal class Program
     {
         static Random r = new Random();
-        
+
         static void Feladat1()
         {
             int[] tomb = new int[10];
@@ -43,7 +43,7 @@
             Console.Write("Kérek egy számot 1 és 5 között: ");
             int index = Convert.ToInt32(Console.ReadLine());
             int j = 0;
-            while (j< tomb.Length && index != j)
+            while (j < tomb.Length && index != j)
             {
                 j++;
             }
@@ -77,11 +77,47 @@
                 Console.WriteLine(tomb[i] += tomb[i - 1]);
             }
         }
+        static void TombolaSorsolas()
+        {
+            int[] nyertesSzamok = new int[5];
+            for (int i = 0; i < nyeremenyek.Length; i++)
+            {
+                int nyertesSzam = 0;
+                bool voltE = false;
+                while (!voltE)
+                {
+                    voltE = true;
+                    nyertesSzam = r.Next(1, 101);
+                    for (int j = 0; j < i; j++)
+                    {
+                        if (nyertesSzamok[j] == nyertesSzam)
+                        {
+                            voltE = false;
+                        }
+                    }
+                }
+                nyertesSzamok[i] = nyertesSzam;
+            }
+            Console.WriteLine("--- Nyertesek: ---");
+            for (int i = 0; i < nyeremenyek.Length; i++)
+            {
+                Console.WriteLine($"{nyertesSzamok[i]} - {nyeremenyek[i]}");
+            }
+        }
+        static string[] nyeremenyek = new string[5];
         static void Karneval()
         {
             int[] sorjegyek = new int[100];
-            string[] nyermenyek = new string[5];
-
+            for (int i = 0; i < 100; i++)
+            {
+                sorjegyek[i] = i;
+            }
+            nyeremenyek[0] = "Élményhajózás a helyi távon";
+            nyeremenyek[1] = "Vacsora egy exluzív étteremben";
+            nyeremenyek[2] = "Városnézés egy hőlégballonról";
+            nyeremenyek[3] = "Bungee Jumping";
+            nyeremenyek[4] = "Repülés egy külföldi országba";
+            TombolaSorsolas();
         }
         static void Main(string[] args)
         {
